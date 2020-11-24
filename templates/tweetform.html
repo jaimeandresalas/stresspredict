@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Tweet Stress Classifier</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  </head>
+  <body>
+
+<h2>Enter the tweet to assess Classifier :</h2>
+<h3>Without stress, with stress or Neutral</h3>
+
+{% from "_formhelpers.html" import render_field %}
+
+<form method=post action="/results">
+  <dl>
+	{{ render_field(form.tweet, cols='30', rows='10') }}
+  </dl>
+  <div>
+	  <input type=submit value='Evaluar tweet' name='submit_btn'>
+  </div>
+</form>
+  </body>
+</html>
