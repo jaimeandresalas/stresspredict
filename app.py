@@ -16,16 +16,15 @@ clf = pickle.load(open(os.path.join(cur_dir,
 '''
 @app.route("/")
 def home():
-    return 'La pagina esta funcionando bien'
+    return 'La pagina esta funcionando bien''''
 
-if __name__ == '__main__':
-    app.run(debug=True)
+
 
 ######## Flask
 class TweetForm(Form):
     tweet = TextAreaField('',
                          [validators.DataRequired(),
-                         validators.length(min=15)])'''
+                         validators.length(min=15)])
 
 
 @app.route("/")
@@ -43,3 +42,6 @@ def results():
                                 prediction=y,
                                 probability=round(proba*100, 2))
     return render_template('tweetform.html', form=form)
+
+if __name__ == '__main__':
+    app.run(debug=True)
