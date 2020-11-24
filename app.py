@@ -9,4 +9,4 @@ def home():
     return 'La pagina esta funcionando bien'
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
