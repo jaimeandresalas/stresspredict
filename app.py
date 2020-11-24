@@ -13,7 +13,7 @@ cur_dir = os.path.dirname(__file__)
 clf = pickle.load(open(os.path.join(cur_dir,
                  'pkl_objects',
                  'classifier.pkl'), 'rb'))
-
+'''
 @app.route("/")
 def home():
     return 'La pagina esta funcionando bien'
@@ -25,10 +25,10 @@ if __name__ == '__main__':
 class TweetForm(Form):
     tweet = TextAreaField('',
                          [validators.DataRequired(),
-                         validators.length(min=15)])
+                         validators.length(min=15)])'''
 
 
-@app.route("/predecir")
+@app.route("/")
 def index():
     form = TweetForm(request.form)
     return render_template('tweetform.html', form=form)
