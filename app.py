@@ -19,7 +19,7 @@ clf = pickle.load(open(os.path.join(cur_dir,
                  'classifier.pkl'), 'rb'))
 '''
 @app.route("/")
-def home():
+def index():
     form = TweetForm(request.form)
     return render_template('tweetform.html', form=form)
 
