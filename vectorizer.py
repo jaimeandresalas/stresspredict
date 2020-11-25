@@ -1,5 +1,5 @@
 from sklearn.feature_extraction.text import HashingVectorizer
-import re    #operaciones con funciones regulares con cadenas
+import re
 import os
 import pickle
 
