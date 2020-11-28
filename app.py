@@ -23,10 +23,7 @@ def classify(document):
     X = vect.transform([document])
     y = clf.predict(X)[0]
     proba = np.max(clf.predict_proba(X))
-    if proba > 0.55:
-        z=1
-    else :
-        z=-1
+    z= np.random.choice([-1,1])
     return label[z], proba
 
 
