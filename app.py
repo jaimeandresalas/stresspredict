@@ -1,9 +1,10 @@
 from flask import Flask, render_template, request
 from wtforms import Form, TextAreaField, validators
 import pickle
-#import sqlite3
 import os
 import numpy as np
+from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
+from sklearn import feature_extraction
 
 # import HashingVectorizer from local dir
 from vectorizer import vect
@@ -22,26 +23,11 @@ def classify(document):
     X = vect.transform([document])
     y = clf.predict(X)[0]
     proba = np.max(clf.predict_proba(X))
-    return label[y], proba
-
-'''def train(document, y):
-    X = vect.transform([document])
-    clf.partial_fit(X, [y])'''
-
-'''def sqlite_entry(path, document, y):
-    conn = sqlite3.connect(path)
-    c = conn.cursor()
-    c.execute("INSERT INTO tweets_db (tweet, sentiment, date)"\
-    " VALUES (?, ?, DATETIME('now'))", (document, y))
-    conn.commit()
-    conn.close()'''
-
-'''def sqlite_select(path):
-	conn = sqlite3.connect(path)
-	c = conn.cursor()
-	c.execute("SELECT tweet, sentiment, date FROM tweets_db")
-	results = c.fetchall()
-	return results'''
+    if clf. > 0.55:
+        z=1
+    else :
+        z=-1
+    return label[z], proba
 
 
 ######## Flask
@@ -66,25 +52,6 @@ def results():
                                 prediction=y,
                                 probability=round(proba*100, 2))
     return render_template('tweetform.html', form=form)
-'''
-@app.route('/sqliteReport', methods=['POST'])
-def sqliteReport():
-	dataset =sqlite_select(db)
-	return render_template('sqliteReport.html', dataset=dataset)
 
-
-
-@app.route('/thanks', methods=['POST'])
-def feedback():
-    feedback = request.form['feedback_button']
-    tweet = request.form['tweet']
-    prediction = request.form['prediction']
-    inv_label = {'Sin sentimiento':-1, 'Neutro':0,'Positivo':1,'Negativo':2}
-    y = inv_label[prediction]
-    train(tweet, y)
-    sqlite_entry(db, tweet, y)
-    
-    return render_template('thanks.html')
-'''
 if __name__ == '__main__':
     app.run(debug=True)
